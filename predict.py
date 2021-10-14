@@ -8,35 +8,13 @@ from Bio import SeqIO
 
 import torch
 # custom functions defined by user
-from FCNmotif import FCNAGRU
+from FCNmotif import FCNsignal
 torch.multiprocessing.set_sharing_strategy('file_system')
 import pandas as pd
 import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-curDir = os.getcwd()
-sys.path.append(curDir+'/'+'webserver')
-#sys.path.append('/home/zqh/web/iDRBP_MMC/iDRBP_MMC/webserver')
-# from webserver import send_email
-
-
-def pieplot(number1, number2, name, outdir):
-
-    fig = plt.figure(figsize=(8, 10))
-    sns.set_theme(style="whitegrid")
-    labels = ['Supported', 'Unsupported']
-    sizes = [number1 / (number1 + number2), number2 / (number1 + number2)]
-    explode = (0, 0)
-    plt.pie(sizes, explode=explode, labels=labels, labeldistance=0.5, pctdistance=0.3, autopct='%1.1f%%',
-            shadow=False, startangle=90, textprops={'fontsize': 12, 'color': 'black'}, radius=1)
-    plt.axis('equal')
-    plt.legend(loc='lower center', fontsize=12)
-    plt.title("{}({} potential binding regions are found)".format(name, number1 + number2), fontsize=18)
-
-    plt.savefig(osp.join(outdir, "{}.png".format(name)), format='png')
-    plt.close(fig)
 
 
 def lineplot(signals, name, outdir, thres):
@@ -134,7 +112,6 @@ def locating(parameters, sequence_dict, model, beds, outdir):
             else:
                 start_p += start
                 end_p += start
-                # print("The sequence is predicted to be a positive sample.")
                 num_pos += 1
                 beds_pos.append((chrom, start_p, end_p))
     print("A total of {} potential binding regions are found.".format(num_pos))
@@ -142,54 +119,44 @@ def locating(parameters, sequence_dict, model, beds, outdir):
     return beds_pos, signals
 
 
-def intersection(pred_beds, ref_beds, outdir):
-    ref_dict = {}
-    with open(ref_beds) as f:
-        for line in f:
-            line_split = line.strip().split()
-            chrom = line_split[0]
-            start = int(line_split[1])
-            end = int(line_split[2])
-            if chrom not in ref_dict.keys():
-                ref_dict[chrom] = [(start, end)]
-            else:
-                ref_dict[chrom].append((start, end))
-    number1 = 0
-    number2 = 0
-    f1 = open(osp.join(outdir, 'supported.bed'), 'w')
-    f2 = open(osp.join(outdir, 'unsupported.bed'), 'w')
-    for bed in pred_beds:
-        chrom = bed[0]
-        start = bed[1]
-        end = bed[2]
-        reference = ref_dict[chrom]
-        flag = False
-        for ref in reference:
-            if start <= ref[0] < end or ref[0] <= start < ref[1]:
-                flag = True
-                break
-        if flag:
-            number1 += 1
-            f1.write("{}\t{}\t{}\n".format(chrom, start, end))
-        else:
-            number2 += 1
-            f2.write("{}\t{}\t{}\n".format(chrom, start, end))
-    f1.close()
-    f2.close()
-    return number1, number2
+def get_args():
+    """Parse all the arguments.
+        Returns:
+          A list of parsed arguments.
+    """
+    parser = argparse.ArgumentParser(description="FCNsignal for locating binding regions")
+
+    parser.add_argument("-d", dest="data_dir", type=str, default=None,
+                        help="A directory containing the training data.")
+    parser.add_argument("-n", dest="name", type=str, default=None,
+                        help="The name of a specified data.")
+
+    parser.add_argument("-t", dest="threshold", type=float, default=0.5,
+                        help="threshold value.")
+    parser.add_argument("-g", dest="gpu", type=str, default='0',
+                        help="choose gpu device.")
+    parser.add_argument("-c", dest="checkpoint", type=str, default='./models/',
+                        help="Where to save snapshots of the model.")
+    parser.add_argument("-o", dest="outdir", type=str, default='./fasta/',
+                        help="Where to save experimental results.")
+
+    return parser.parse_args()
+
+
+args = get_args()
+window = 60
 
 
 def main():
-    root = "/home/zqh/FCNAsignal_TF/website"
+    root = osp.dirname(__file__)
     infile = osp.join(root, "input.bed")
-    window = 100
-    name = 'CTCF'
-    threshold = 1.5
-    model_file = osp.join(root, "models/{}_model.pth".format(name))
+    name = args.name
+    threshold = args.threshold
+    model_file = osp.join(root, "models/{}/model_best.pth".format(name))
     outdir = osp.join(root, "outputs")
-    genome = 'hg38'
-    sequence_dict = SeqIO.to_dict(SeqIO.parse(open(osp.join(root, "genomes/{}.fa".format(genome))), 'fasta'))
-    references = osp.join(root, "references/{}/{}_sorted.bed".format(name, name))
+    if not osp.exists(outdir):
+        os.mkdir(outdir)
+    sequence_dict = SeqIO.to_dict(SeqIO.parse(open(osp.join(root, "Genome/hg38.fa")), 'fasta'))
     device = torch.device("cuda:0")
     with open(infile) as f:
         beds = f.readlines()
@@ -200,41 +167,8 @@ def main():
     model.load_state_dict(state_dict)
     model.to(device)
     parameters = {'Window': window, 'Name': name, 'Threshold': threshold, 'Device': device}
-    beds_pos, signal_p = locating(parameters, sequence_dict, model, beds, outdir)
-    number1, number2 = intersection(beds_pos, references, outdir)
-    pieplot(number1, number2, name, outdir)
+    beds_pos, signal_p = locating(parameters, sequence_dict, model, outdir)
     lineplot(signal_p, name, outdir, parameters['Threshold'])
-
-
-def web_service(root, user_email, window, name, threshold, genome):
-    # root = "/home/zqh/FCNAsignal_TF/website"
-    # window = 60
-    # name = 'CTCF'
-    # threshold = 1.5
-    # genome = 'hg38'
-    sequence_dict = SeqIO.to_dict(SeqIO.parse(open(osp.join(root, "genomes/{}.fa".format(genome))), 'fasta'))
-    references = osp.join(root, "references/{}/{}_sorted.bed".format(name, name))
-    device = torch.device("cpu")
-    infile = osp.join(root, "input.bed")
-    # test_fasta = os.path.join(user_dir, 'test.fasta')  # 输入文件
-    # test_fasta = test_fasta.replace('\\','/')
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!', infile)
-    outdir = osp.join(root, "outputs")
-    os.mkdir(outdir)
-    # Load weights
-    model_file = osp.join(root, "models/{}_model.pth".format(name))
-    # model_file = 'C:\\Users\\Administrator\\Desktop\\web1\\iDRBP_MMC\\iDRBP_MMC\\webserver\\model\\' + family_name + '\\model_best0.pth'
-    checkpoint = torch.load(model_file, map_location=lambda storage, loc: storage)
-    state_dict = checkpoint['model_state_dict']
-    model = FCNAGRU(motiflen=16)
-    model.load_state_dict(state_dict)
-    model.to(device)
-    parameters = {'Window': window, 'Name': name, 'Threshold': threshold, 'Device': device}
-    beds_pos, signal_p = locating(parameters, sequence_dict, model, beds, outdir)
-    number1, number2 = intersection(beds_pos, references, outdir)
-    pieplot(number1, number2, name, outdir)
-    lineplot(signal_p, name, outdir, parameters['Threshold'])
-    send_email.send_email_1(user_dir.split('/')[-1], user_email)
 
 
 if __name__ == "__main__":
