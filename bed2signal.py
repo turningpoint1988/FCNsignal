@@ -16,8 +16,9 @@ INDEX[22] = 'chrX'
 SMOOTH = True
 WINDOW = 15
 THRESHOLD = 0.05
+ROOT = osp.dirname(__file__)
 CHROM = {}
-with open('/your_path/Genome/chromsize') as f:
+with open(ROOT + '/Genome/chromsize') as f:
     for i in f:
         line_split = i.strip().split()
         CHROM[line_split[0]] = int(line_split[1])
@@ -171,7 +172,7 @@ def main():
     out_dir = osp.join(params.dir, 'data')
     if not osp.exists(out_dir):
         os.mkdir(out_dir)
-    sequence_dict = SeqIO.to_dict(SeqIO.parse(open('/your_path/Genome/hg38.fa'), 'fasta'))
+    sequence_dict = SeqIO.to_dict(SeqIO.parse(open(ROOT + '/Genome/hg38.fa'), 'fasta'))
     print('Experiment on %s dataset' % name)
     seqs_bed = data_dir + '/thresholded.bed'
     pvalue_file = data_dir + '/p-value.bigWig'
