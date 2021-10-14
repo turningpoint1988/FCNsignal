@@ -126,19 +126,10 @@ def get_args():
     """
     parser = argparse.ArgumentParser(description="FCNsignal for locating binding regions")
 
-    parser.add_argument("-d", dest="data_dir", type=str, default=None,
-                        help="A directory containing the training data.")
     parser.add_argument("-n", dest="name", type=str, default=None,
                         help="The name of a specified data.")
-
     parser.add_argument("-t", dest="threshold", type=float, default=0.5,
                         help="threshold value.")
-    parser.add_argument("-g", dest="gpu", type=str, default='0',
-                        help="choose gpu device.")
-    parser.add_argument("-c", dest="checkpoint", type=str, default='./models/',
-                        help="Where to save snapshots of the model.")
-    parser.add_argument("-o", dest="outdir", type=str, default='./fasta/',
-                        help="Where to save experimental results.")
 
     return parser.parse_args()
 
