@@ -26,10 +26,10 @@ def get_args():
         Returns:
           A list of parsed arguments.
     """
-    parser = argparse.ArgumentParser(description="FCN for motif location")
+    parser = argparse.ArgumentParser(description="FCNsignal for testing data")
 
     parser.add_argument("-d", dest="data_dir", type=str, default=None,
-                        help="A directory containing the training data.")
+                        help="A directory containing the test data.")
     parser.add_argument("-n", dest="name", type=str, default=None,
                         help="The name of a specified data.")
 
