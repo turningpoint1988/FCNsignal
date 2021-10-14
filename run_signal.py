@@ -40,21 +40,21 @@ def get_args():
         Returns:
           A list of parsed arguments.
     """
-    parser = argparse.ArgumentParser(description="EPIAttention Network for EPI interaction identification")
+    parser = argparse.ArgumentParser(description="FCNsignal for predicting base-resolution binding signals")
 
     parser.add_argument("-d", dest="data_dir", type=str, default=None,
                         help="A directory containing the training data.")
     parser.add_argument("-n", dest="name", type=str, default=None,
                         help="The name of a specified data.")
 
-    parser.add_argument("-g", dest="gpu", type=str, default='1',
+    parser.add_argument("-g", dest="gpu", type=str, default='0',
                         help="choose gpu device. eg. '0,1,2' ")
     parser.add_argument("-s", dest="seed", type=int, default=5,
                         help="Random seed to have reproducible results.")
     # Arguments for Adam optimization
-    parser.add_argument("-b", dest="batch_size", type=int, default=300,
-                        help="Number of sequences sent to the network in one step (300 or 500).")
-    parser.add_argument("-e", dest="max_epoch", type=int, default=30,
+    parser.add_argument("-b", dest="batch_size", type=int, default=500,
+                        help="Number of sequences sent to the network in one step.")
+    parser.add_argument("-e", dest="max_epoch", type=int, default=50,
                         help="Number of training steps.")
     parser.add_argument("-c", dest="checkpoint", type=str, default='./models/',
                         help="Where to save snapshots of the model.")
@@ -84,7 +84,7 @@ def main():
     index_val = random.sample(index, number_t)
     index_train = list(set(index) - set(index_val))
     f = open(osp.join(args.checkpoint, 'record.txt'), 'w')
-    f.write('RMSE\tR2\tPR\n')
+    f.write('RMSE\tPR\n')
     # build training data generator
     data_tr = seqs[index_train]
     signal_tr = signals[index_train]
@@ -97,7 +97,7 @@ def main():
     val_loader = DataLoader(val_data, batch_size=1, shuffle=False, num_workers=0)
     rmse_lowest = 10000
     pr_best = 0
-    for trial in range(12):
+    for trial in range(15):
         params = randomparams()
         model = FCNsignal(motiflen=motifLen)
         # model = BPNet()
