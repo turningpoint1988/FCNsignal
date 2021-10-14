@@ -2,9 +2,7 @@
 
 import os
 import sys
-import time
 import argparse
-import math
 import numpy as np
 import os.path as osp
 
