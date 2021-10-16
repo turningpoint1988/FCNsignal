@@ -124,7 +124,7 @@ def extract(signal, thres):
     return int(start), int(end)
 
 
-def motif_all(device, model, state_dict, test_loader, outdir, thres=0.5):
+def motif_all(device, model, state_dict, test_loader, outdir, thres):
     # loading model parameters
     model.load_state_dict(state_dict)
     model.to(device)
@@ -209,7 +209,7 @@ def get_args():
     parser.add_argument("-n", dest="name", type=str, default=None,
                         help="The name of a specified data.")
 
-    parser.add_argument("-t", dest="thres", type=float, default=0.5,
+    parser.add_argument("-t", dest="thres", type=float, default=0.3,
                         help="threshold value.")
     parser.add_argument("-g", dest="gpu", type=str, default='0',
                         help="choose gpu device.")
