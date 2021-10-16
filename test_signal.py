@@ -51,7 +51,8 @@ def main():
             device = torch.device("cuda:" + args.gpu.split(',')[0])
     else:
         device = torch.device("cpu")
-    f = open(osp.join(args.checkpoint, 'record.txt'), 'a')
+    f = open(osp.join(args.checkpoint, 'record.txt'), 'w')
+    f.write('RMSE\tPR\n')
     motifLen = 16
     Data = np.load(osp.join(args.data_dir, '%s_test.npz' % args.name))
     seqs, signals = Data['data'], Data['signal']
@@ -101,6 +102,7 @@ def main():
     rmse /= len(t_all)
     pr /= len(t_all)
     print("{}: {:.3f}\t{:.3f}\n".format(args.name, rmse, pr))
+    f.write("{:.3f}\t{:.3f}\n".format(rmse, pr))
     ##
     p_all = []
     t_all = []
@@ -130,13 +132,14 @@ def main():
     rmse /= len(t_all)
     pr /= len(t_all)
     print("{}: {:.3f}\t{:.3f}\n".format(args.name, rmse, pr))
-    f.write("{:.3f}\t{:.3f}\n".format(rmse, pr))
+    # f.write("{:.3f}\t{:.3f}\n".format(rmse, pr))
     label = np.concatenate((label_pos, label_neg))
     pred = np.concatenate((np.array(max_pos), np.array(max_neg)))
     #
     auroc = roc_auc_score(label, pred)
     auprc = average_precision_score(label, pred)
     print("{}: {:.3f}\t{:.3f}\n".format(args.name, auroc, auprc))
+    f.write('AUC\tPRAUC\n')
     f.write("{:.3f}\t{:.3f}\n".format(auroc, auprc))
     f.close()
 
