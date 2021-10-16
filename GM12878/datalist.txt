@@ -1,1 +1,23 @@
 
+GM12878	Experiments	URL	Signal p-value	IDR thresholded peaks
+ARID3A	ENCSR778UBR	https://www.encodeproject.org/experiments/ENCSR778UBR	ENCFF503CWF	ENCFF531CLQ
+BACH1	ENCSR636MKU	https://www.encodeproject.org/experiments/ENCSR636MKU	ENCFF859VLX	ENCFF631RZH
+BATF	ENCSR000BGT	https://www.encodeproject.org/experiments/ENCSR000BGT	ENCFF716MIY	ENCFF728KFD
+BCL11A	ENCSR000BHA	https://www.encodeproject.org/experiments/ENCSR000BHA	ENCFF197TWD	ENCFF824QXX
+BHLHE40	ENCSR987MTA	https://www.encodeproject.org/experiments/ENCSR987MTA	ENCFF673GWX	ENCFF445XYV
+CEBPB	ENCSR000BRX	https://www.encodeproject.org/experiments/ENCSR000BRX	ENCFF836LCO	ENCFF955YFB
+CTCF	ENCSR000AKB	https://www.encodeproject.org/experiments/ENCSR000AKB	ENCFF803OXW	ENCFF797SDL
+CUX1	ENCSR000DYR	https://www.encodeproject.org/experiments/ENCSR000DYR	ENCFF833GJC	ENCFF451AII
+E2F4	ENCSR000DYY	https://www.encodeproject.org/experiments/ENCSR000DYY	ENCFF337MYH	ENCFF744QAC
+EBF1	ENCSR000BGU	https://www.encodeproject.org/experiments/ENCSR000BGU	ENCFF810XRY	ENCFF895MHN
+ELK1	ENCSR000DZB	https://www.encodeproject.org/experiments/ENCSR000DZB	ENCFF385JTY	ENCFF164MPE
+ETV6	ENCSR626VUC	https://www.encodeproject.org/experiments/ENCSR626VUC	ENCFF203NIA	ENCFF151UJT
+JUND	ENCSR000DYS	https://www.encodeproject.org/experiments/ENCSR000DYS	ENCFF948QYK	ENCFF134BQO
+MEF2A	ENCSR000BKB	https://www.encodeproject.org/experiments/ENCSR000BKB	ENCFF497DHP	ENCFF826GQU
+MXI1	ENCSR000DZI	https://www.encodeproject.org/experiments/ENCSR000DZI	ENCFF568SNH	ENCFF376AEL
+NFYB	ENCSR000DNM	https://www.encodeproject.org/experiments/ENCSR000DNM	ENCFF225JEM	ENCFF156MUM
+NR2C1	ENCSR784VIQ	https://www.encodeproject.org/experiments/ENCSR784VIQ	ENCFF986VHR	ENCFF626EEU
+PBX3	ENCSR000BGR	https://www.encodeproject.org/experiments/ENCSR000BGR	ENCFF480ZQT	ENCFF402DQD
+SRF	ENCSR000BMI	https://www.encodeproject.org/experiments/ENCSR000BMI ENCFF042HPQ	ENCFF114CWH
+USF1	ENCSR000BGI	https://www.encodeproject.org/experiments/ENCSR000BGI	ENCFF902UDF	ENCFF879TPT
+ZEB1	ENCSR000BND	https://www.encodeproject.org/experiments/ENCSR000BND	ENCFF553ZPL	ENCFF703XCL
