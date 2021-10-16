@@ -1,1 +1,22 @@
 
+K562	Experiments	URL	Signal p-value	IDR thresholded peaks
+ARNT	ENCSR155KHM	https://www.encodeproject.org/experiments/ENCSR155KHM/	ENCFF430XHC	ENCFF728ITJ
+CBFB	ENCSR116NDV	https://www.encodeproject.org/experiments/ENCSR116NDV/	ENCFF829AHU	ENCFF802NHC
+CREB1	ENCSR000BSO	https://www.encodeproject.org/experiments/ENCSR000BSO/	ENCFF014CIM	ENCFF193LLN
+ETS1	ENCSR000BKQ	https://www.encodeproject.org/experiments/ENCSR000BKQ/	ENCFF490BCW	ENCFF159OUK
+FOSL1	ENCSR000BMV	https://www.encodeproject.org/experiments/ENCSR000BMV/	ENCFF970NEI	ENCFF004HXL
+GATA2	ENCSR257RKC	https://www.encodeproject.org/experiments/ENCSR257RKC/	ENCFF343XFN	ENCFF772OKO
+JUN	ENCSR000EFS	https://www.encodeproject.org/experiments/ENCSR000EFS/	ENCFF756UVW	ENCFF190CGV
+JUNB	ENCSR525VAT	https://www.encodeproject.org/experiments/ENCSR525VAT/	ENCFF114SLT	ENCFF510IDP
+JUND	ENCSR000EGN	https://www.encodeproject.org/experiments/ENCSR000EGN/	ENCFF253NTK	ENCFF306SZL
+KLF16	ENCSR397DQC	https://www.encodeproject.org/experiments/ENCSR397DQC/	ENCFF374RSO	ENCFF585OJO
+MXI1	ENCSR000EGZ	https://www.encodeproject.org/experiments/ENCSR000EGZ/	ENCFF845HTM	ENCFF068IGH
+MYC	ENCSR744JJU	https://www.encodeproject.org/experiments/ENCSR744JJU/	ENCFF670SRV	ENCFF114VAI
+NEUROD1	ENCSR986CDX	https://www.encodeproject.org/experiments/ENCSR986CDX/	ENCFF112BYB	ENCFF625QHR
+NFYA	ENCSR000EGR	https://www.encodeproject.org/experiments/ENCSR000EGR/	ENCFF643SJZ	ENCFF908HSL
+NR2C1	ENCSR742IDN	https://www.encodeproject.org/experiments/ENCSR742IDN/	ENCFF525KET	ENCFF469ZBB
+NR2F6	ENCSR128KLX	https://www.encodeproject.org/experiments/ENCSR128KLX/	ENCFF918KYJ	ENCFF647RGI
+TCF7	ENCSR863KUB	https://www.encodeproject.org/experiments/ENCSR863KUB/	ENCFF986NMS	ENCFF736XUU
+YY1	ENCSR000BMH	https://www.encodeproject.org/experiments/ENCSR000BMH/	ENCFF927TDC	ENCFF398UQZ
+ZBTB33	ENCSR876GXA	https://www.encodeproject.org/experiments/ENCSR876GXA/	ENCFF288PSZ	ENCFF917RIN
+ZNF740	ENCSR532EMP	https://www.encodeproject.org/experiments/ENCSR532EMP/	ENCFF600BUX	ENCFF004YCK
