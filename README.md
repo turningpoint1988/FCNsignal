@@ -3,7 +3,7 @@
 Base-resolution prediction of transcription factor binding signals by a deep learning framework. The performance of FCNsignal was evaluated on the [ChIP-seq and ATAC-seq datasets](https://www.encodeproject.org/).
 
 <p align="center"> 
-<img src="https://github.com/turningpoint1988/FCNsignal/flowchart.jpg">
+<img src=https://github.com/turningpoint1988/FCNsignal/flowchart.jpg>
 </p>
 
 ## Prerequisites and Dependencies
@@ -28,7 +28,6 @@ Base-resolution prediction of transcription factor binding signals by a deep lea
 - [DeltaSVM](https://www.beerlab.org/deltasvm/)
 
 ## Data Preparation
-
 
 ```
 python bed2signal.py -d <> -n <> -s <>
@@ -57,11 +56,11 @@ python run_signal.py -d <> -n <> -g <> -s <> -b <> -e <> -c <>
 | -s         | Random seed                                                                      |
 | -b         | The number of sequences in a batch size (default is 500)                         |
 | -e         | The epoch of training steps (default is 50)                                      |
-| -c         | The checkpoint for storing models, e.g. /your_path/FCNsignal/models/HeLa-S3/CTCF |
+| -c         | The path for storing models, e.g. /your_path/FCNsignal/models/HeLa-S3/CTCF       |
 
 ### Output
 
-Trained models for FCNsignal on the specified datasets. For example, The trained model can be found at ` /your_path/FCNsignal/models/HeLa-S3/CTCF/model.pth`.
+Trained models for FCNsignal on the specified datasets. For example, A trained model can be found at ` /your_path/FCNsignal/models/HeLa-S3/CTCF/model.pth`.
 
 ## Model Classification
 
@@ -117,7 +116,7 @@ python TFBS_locating.py -i <> -n <> -g <> -t <> -w <> -c <>
 | -n         | The name of the specified dataset, e.g. CTCF                                                |
 | -g         | The GPU device id (default is 0)                                                            |
 | -t         | The threshold value to determine the binding regions (default is 1.5)                       |
-| -w         | The window of the binding regions (default is 60)                                           |
+| -w         | The length of the binding regions (default is 60)                                           |
 | -c         | The trained model path of a specified dataset, e.g. /your_path/FCNsignal/models/HeLa-S3/CTCF|
 
 ### Output
