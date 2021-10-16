@@ -83,8 +83,6 @@ def main():
     index = list(range(len(seqs)))
     index_val = random.sample(index, number_t)
     index_train = list(set(index) - set(index_val))
-    f = open(osp.join(args.checkpoint, 'record.txt'), 'w')
-    f.write('RMSE\tPR\n')
     # build training data generator
     data_tr = seqs[index_train]
     signal_tr = signals[index_train]
@@ -123,8 +121,6 @@ def main():
             torch.save({
                 'model_state_dict': state_dict
             }, checkpoint_file)
-    f.write("{:.3f}\t{:.3f}\n".format(rmse_lowest, pr_best))
-    f.close()
 
 
 if __name__ == "__main__":
