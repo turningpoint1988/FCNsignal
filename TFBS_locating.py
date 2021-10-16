@@ -125,30 +125,39 @@ def get_args():
           A list of parsed arguments.
     """
     parser = argparse.ArgumentParser(description="FCNsignal for locating binding regions")
-
+    parser.add_argument("-i", dest="infile", type=str, default=None,
+                        help="An input file in bed format.")
     parser.add_argument("-n", dest="name", type=str, default=None,
                         help="The name of a specified data.")
-    parser.add_argument("-t", dest="threshold", type=float, default=0.5,
-                        help="threshold value.")
+    parser.add_argument("-g", dest="gpu", type=str, default='0',
+                        help="Choose gpu device.")
+    parser.add_argument("-t", dest="threshold", type=float, default=1.5,
+                        help="The threshold value.")
+    parser.add_argument("-w", dest="window", type=float, default=60,
+                        help="The length of binding regions.")
+    parser.add_argument("-c", dest="checkpoint", type=str, default='./models/',
+                        help="Where to save snapshots of the model.")
 
     return parser.parse_args()
 
 
 args = get_args()
-window = 60
 
 
 def main():
     root = osp.dirname(__file__)
-    infile = osp.join(root, "input.bed")
+    # infile = osp.join(root, "input.bed")
+    infile = args.infile
     name = args.name
     threshold = args.threshold
-    model_file = osp.join(root, "models/{}/model_best.pth".format(name))
+    window = args.window
+    device = torch.device("cuda:" + args.gpu)
+    # model_file = osp.join(root, "models/{}/model_best.pth".format(name))
+    model_file = osp.join(args.checkpoint, "model_best.pth")
     outdir = osp.join(root, "outputs")
     if not osp.exists(outdir):
         os.mkdir(outdir)
     sequence_dict = SeqIO.to_dict(SeqIO.parse(open(osp.join(root, "Genome/hg38.fa")), 'fasta'))
-    device = torch.device("cuda:0")
     with open(infile) as f:
         beds = f.readlines()
     # Load weights
@@ -159,6 +168,13 @@ def main():
     model.to(device)
     parameters = {'Window': window, 'Name': name, 'Threshold': threshold, 'Device': device}
     beds_pos, signal_p = locating(parameters, sequence_dict, model, outdir)
+    f = open(osp.join(outdir, 'binding.bed'), 'w')
+    for bed in beds_pos:
+        chrom = bed[0]
+        start = bed[1]
+        end = bed[2]
+        f.write("{}\t{}\t{}\n".format(chrom, start, end))
+    f.close()
     lineplot(signal_p, name, outdir, parameters['Threshold'])
 
 
