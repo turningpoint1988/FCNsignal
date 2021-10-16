@@ -3,7 +3,7 @@
 Base-resolution prediction of transcription factor binding signals by a deep learning framework. The performance of FCNsignal was evaluated on the [ChIP-seq and ATAC-seq datasets](https://www.encodeproject.org/).
 
 <p align="center"> 
-<img src=https://github.com/turningpoint1988/FCNsignal/flowchart.jpg>
+<img src=https://github.com/turningpoint1988/FCNsignal/blob/main/flowchart.jpg>
 </p>
 
 ## Prerequisites and Dependencies
@@ -121,6 +121,6 @@ python TFBS_locating.py -i <> -n <> -g <> -t <> -w <> -c <>
 
 ### Output
 
-The outputs include the base-resolution prediction of inputs and the positions of potential binding regions in the genome (in bed format). <br/>
+The outputs include the base-resolution prediction of inputs and the positions of potential binding regions in the genome (bed format). <br/>
 We also provide the line plots of the above base-resolutiion prediction.
 
