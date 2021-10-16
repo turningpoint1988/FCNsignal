@@ -60,11 +60,11 @@ python run_signal.py -d <> -n <> -g <> -s <> -b <> -e <> -c <>
 
 ### Output
 
-Trained models for FCNsignal on the specified datasets. For example, A trained model can be found at ` /your_path/FCNsignal/models/HeLa-S3/CTCF/model.pth`.
+Trained models for FCNsignal on the specified datasets. For example, A trained model can be found at `/your_path/FCNsignal/models/HeLa-S3/CTCF/model_best.pth`.
 
 ## Model Classification
 
-Test FCNsignal models on the specified test data:
+Test FCNsignal on the specified test data:
 
 ```
 python test_signal.py -d <> -n <> -g <> -c <>
