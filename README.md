@@ -16,7 +16,7 @@ Base-resolution prediction of transcription factor binding signals by a deep lea
 
 ## Competing Methods
 
-- [MEME Suite](https://meme-suite.org/meme/doc/download.html). It integrates several methods used by this paper, including MEME, STREME, TOMTOM and FIMO.
+- [MEME Suite](https://meme-suite.org/meme/doc/download.html): The tool integrates several methods used by this paper, including MEME, STREME, TOMTOM and FIMO.
 - [DeepCNN](https://github.com/turningpoint1988/DLBSS)
 - [DanQ](https://github.com/uci-cbcl/DanQ)
 - [FCNA\*](https://github.com/turningpoint1988/FCNA)
