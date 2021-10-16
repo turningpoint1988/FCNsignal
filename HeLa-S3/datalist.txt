@@ -1,1 +1,14 @@
 
+HeLa-S3	Experiments	URL	Signal p-value	IDR thresholded peaks
+CTCF	ENCSR000DUB	https://www.encodeproject.org/experiments/ENCSR000DUB/	ENCFF959LLF	ENCFF030QAM
+E2F1	ENCSR000EVM	https://www.encodeproject.org/experiments/ENCSR000EVM/	ENCFF955LBT	ENCFF872RSG
+E2F6	ENCSR000EVK	https://www.encodeproject.org/experiments/ENCSR000EVK/	ENCFF573ZIC	ENCFF160MCO
+ELK1	ENCSR000ECI	https://www.encodeproject.org/experiments/ENCSR000ECI/	ENCFF647ESC	ENCFF279OML
+ELK4	ENCSR000EVI	https://www.encodeproject.org/experiments/ENCSR000EVI/	ENCFF632TTT	ENCFF582BHA
+JUND	ENCSR000EDH	https://www.encodeproject.org/experiments/ENCSR000EDH/	ENCFF756JBL	ENCFF995QMN
+MAFF	ENCSR140DSL	https://www.encodeproject.org/experiments/ENCSR140DSL/	ENCFF320OIL	ENCFF280WZN
+MAX	ENCSR000ECN	https://www.encodeproject.org/experiments/ENCSR000ECN/	ENCFF323ASO	ENCFF666XCS
+MAZ	ENCSR000ECL	https://www.encodeproject.org/experiments/ENCSR000ECL/	ENCFF036NCL	ENCFF424JHD
+REST	ENCSR000BMN	https://www.encodeproject.org/experiments/ENCSR000BMN/	ENCFF103IAQ	ENCFF096JDA
+RFX5	ENCSR000ECX	https://www.encodeproject.org/experiments/ENCSR000ECX/	ENCFF482YCH	ENCFF438ZEN
+TBP	ENCSR000EDD	https://www.encodeproject.org/experiments/ENCSR000EDD/	ENCFF936GLP	ENCFF363NQY
