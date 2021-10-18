@@ -25,8 +25,8 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 def randomparams():
     space = {
         'lr': hp.choice('lr', (0.001, 0.0001)),
-        'beta1': hp.choice('beta1', (0.8, 0.9)),
-        'beta2': hp.choice('beta2', (0.99, 0.999)),
+        'beta1': hp.choice('beta1', (0.9, 0.99, 0.999)),
+        'beta2': hp.choice('beta2', (0.9, 0.99, 0.999)),
         'weight': hp.choice('weight', (0, 0.001))
     }
     params = sample(space)
