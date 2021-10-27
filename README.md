@@ -105,7 +105,7 @@ Generate motif files in MEME format, which are subsequently used by TOMTOM.
 
 ## Locating TFBSs
 
-Locating potential binding regions on the inputs of arbitrary length:
+Locating potential binding regions on inputs of arbitrary length:
 
 ```
 python TFBS_locating.py -i <> -n <> -g <> -t <> -w <> -c <>
@@ -121,7 +121,7 @@ python TFBS_locating.py -i <> -n <> -g <> -t <> -w <> -c <>
 
 ### Output
 
-The outputs include the base-resolution prediction of inputs and the positions of potential binding regions in the genome (bed format). <br/>
+The outputs include the base-resolution prediction of inputs and the position of potential binding regions in the genome (bed format). <br/>
 We also provide the line plots of the above base-resolutiion prediction.
 
 <p align="center"> 
