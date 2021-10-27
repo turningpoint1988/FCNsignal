@@ -124,3 +124,6 @@ python TFBS_locating.py -i <> -n <> -g <> -t <> -w <> -c <>
 The outputs include the base-resolution prediction of inputs and the positions of potential binding regions in the genome (bed format). <br/>
 We also provide the line plots of the above base-resolutiion prediction.
 
+<p align="center"> 
+<img src=https://github.com/turningpoint1988/FCNsignal/blob/main/output.jpg>
+</p>
