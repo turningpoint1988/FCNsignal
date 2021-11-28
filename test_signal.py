@@ -68,8 +68,6 @@ def main():
     chk = torch.load(checkpoint_file)
     state_dict = chk['model_state_dict']
     model = FCNsignal(motiflen=motifLen)
-    # model = BPNet()
-    # model = FCNA(motiflen=motifLen)
     model.load_state_dict(state_dict)
     model.to(device)
     model.eval()
