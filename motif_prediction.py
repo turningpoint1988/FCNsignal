@@ -31,7 +31,7 @@ def bn_relu_conv(in_, out_, kernel_size=3, stride=1, bias=False):
 class FCNsignal(nn.Module):
     """FCNsignal for motif mining"""
     def __init__(self, motiflen=16):
-        super(FCNAGRU, self).__init__()
+        super(FCNsignal, self).__init__()
         # encoding
         self.conv1 = nn.Conv1d(in_channels=4, out_channels=64, kernel_size=motiflen)
         self.pool1 = nn.MaxPool1d(kernel_size=4, stride=4)
