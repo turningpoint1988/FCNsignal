@@ -94,10 +94,11 @@ def locating(parameters, sequence_dict, model, beds, outdir):
     signals = {}
     num_pos = 0
     f = open(osp.join(outdir, 'predictions.txt'), 'w')
-    for i, bed in enumerate(beds):
-        chrom = bed.strip().split()[0]
-        start = int(bed.split()[1])
-        end = int(bed.split()[2])
+    for i, line in enumerate(beds):
+        bed = line.strip().split()
+        chrom = bed[0]
+        start = int(bed[1])
+        end = int(bed[2])
         X_data = torch.from_numpy(one_hot(sequence_dict, chrom, start, end))
         X_data = X_data.float().to(parameters['Device'])
         with torch.no_grad():
@@ -167,7 +168,7 @@ def main():
     model.load_state_dict(state_dict)
     model.to(device)
     parameters = {'Window': window, 'Name': name, 'Threshold': threshold, 'Device': device}
-    beds_pos, signal_p = locating(parameters, sequence_dict, model, outdir)
+    beds_pos, signal_p = locating(parameters, sequence_dict, model, beds, outdir)
     f = open(osp.join(outdir, 'binding.bed'), 'w')
     for bed in beds_pos:
         chrom = bed[0]
