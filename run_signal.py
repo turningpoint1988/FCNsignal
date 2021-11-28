@@ -98,8 +98,6 @@ def main():
     for trial in range(15):
         params = randomparams()
         model = FCNsignal(motiflen=motifLen)
-        # model = BPNet()
-        # model = FCNA(motiflen=motifLen)
         optimizer = optim.Adam(model.parameters(), lr=params['lr'], betas=(params['beta1'], params['beta2']), weight_decay=params['weight'])
         scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.9)
         criterion = NormalLoss()
