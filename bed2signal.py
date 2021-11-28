@@ -213,8 +213,8 @@ def main():
     labels_total = np.concatenate((labels_tr, labels_neg_tr), axis=0)
     np.savez(out_dir + '/%s_train.npz' % name, data=seqs_total, signal=signals_total, label=labels_total)
     print("{}: The train data are: {}".format(name, len(seqs_total)))
-    print("{}: The test data are: {}".format(name, len(seqs_te)))
-    print("{}: The negative data are: {}\n".format(name, len(seqs_neg_te)))
+    print("{}: The positive test data are: {}".format(name, len(seqs_te)))
+    print("{}: The negative test data are: {}\n".format(name, len(seqs_neg_te)))
     #
 
 
