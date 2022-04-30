@@ -40,8 +40,9 @@ class Trainer(object):
                 signal = sample_batch["signal"].float().to(self.device)
                 pred = self.model(X_data)
                 loss = self.criterion(pred, signal)
-                if np.isnan(loss.item()):
-                    raise ValueError('loss is nan while training')
+                if np.isnan(loss.item()) or not np.isfinite(loss.item()):
+                    print('loss is nan or inf while training')
+                    return self.rmse_lowest, self.pr_best, self.state_best
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
