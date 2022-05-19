@@ -22,7 +22,7 @@ def lineplot(signals, name, outdir, thres):
         signal = signals[key]
         segment_len = 1000
         length = len(signal)
-        n = int(np.ceil(length / segment_len))
+        n = int(np.floor(length / segment_len))
         positions_x = []
         positions_y = []
         for i in range(n):
